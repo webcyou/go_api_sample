@@ -40,7 +40,9 @@ http://localhost:8080/users/:id
 ### Algorithm
 The basic scoring algorithm is Euclidean distance
 
-$$ d(p,q)=d(q,p)=\sqrt{(q_1-p_1)^2+(q_2-p_2)^2+\cdots+(q_n+p_n)^2} \tag{2.1} $$
+```math
+d(p,q)=d(q,p)=\sqrt{(q_1-p_1)^2+(q_2-p_2)^2+\cdots+(q_n+p_n)^2} \tag{2.1}
+```
 
 
 	
