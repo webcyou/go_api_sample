@@ -39,9 +39,8 @@ http://localhost:8080/users/:id
 The basic scoring algorithm is Euclidean distance
 
 ```math
-F(s)=\int_{0}^{\infty}f(t)e^{-st}dt
-```
 d(p,q)=d(q,p)=\sqrt{(q_1-p_1)^2+(q_2-p_2)^2+\cdots+(q_n+p_n)^2}
+```
 
 
 ## Author
