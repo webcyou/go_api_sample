@@ -1,9 +1,7 @@
-## Go Language - API sample
+# Go Language - API sample
 
 
-
-
-### Web Framework 
+## Web Framework 
 
 [Gin Web Framework](https://github.com/gin-gonic/gin)
 
@@ -12,7 +10,7 @@
 go get gopkg.in/gin-gonic/gin.v1
 ```
 
-### ORM library
+## ORM library
 
 [GORM](https://github.com/jinzhu/gorm)
 
@@ -20,7 +18,7 @@ go get gopkg.in/gin-gonic/gin.v1
 go get -u github.com/jinzhu/gorm
 ```
 	
-### API
+## API
 	
 Hello world!
 ```$xslt
@@ -37,16 +35,16 @@ User & RecommendUsers
 http://localhost:8080/users/:id
 ```
 
-### Algorithm
+## Algorithm
 The basic scoring algorithm is Euclidean distance
 
-```math
-d(p,q)=d(q,p)=\sqrt{(q_1-p_1)^2+(q_2-p_2)^2+\cdots+(q_n+p_n)^2} \tag{2.1}
+``` math
+F(s)=\int_{0}^{\infty}f(t)e^{-st}dt
 ```
+d(p,q)=d(q,p)=\sqrt{(q_1-p_1)^2+(q_2-p_2)^2+\cdots+(q_n+p_n)^2}
 
 
-	
-### Author
+## Author
 
 **Daisuke Takayama**
 * [@webcyou](https://twitter.com/webcyou)
