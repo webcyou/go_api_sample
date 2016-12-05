@@ -40,11 +40,11 @@ type MatchingUser struct {
 func NewUser(name string, itemSlice []string) User {
 	return User{
 		Name:  name,
-		Items: createItems(itemSlice),
+		Items: CreateItems(itemSlice),
 	}
 }
 
-func createUsers(userNames []string, itemSlice []string) []User {
+func CreateUsers(userNames []string, itemSlice []string) []User {
 	users := make([]User, len(userNames))
 
 	for i, name := range userNames {
@@ -63,7 +63,7 @@ func NewItem(name string) Item {
 	}
 }
 
-func createItems(s []string) []Item {
+func CreateItems(s []string) []Item {
 	items := make([]Item, len(s))
 
 	for i, v := range s {
@@ -89,7 +89,7 @@ func (a ByScore) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a ByScore) Less(i, j int) bool { return a[i].Score < a[j].Score }
 
 // Euclid Distance Score
-func getDistanceScore(user *User, otherUser *User) float64 {
+func GetDistanceScore(user *User, otherUser *User) float64 {
 	var matchItems map[string]float64 = make(map[string]float64)
 
 	for _, item := range user.Items {
@@ -146,7 +146,7 @@ func init() {
 		"ユーザー10",
 	}
 
-	users := createUsers(userNames, itemNames)
+	users := CreateUsers(userNames, itemNames)
 
 	count := 0
 	db.Table("users").Count(&count)
@@ -214,7 +214,7 @@ func main() {
 		}
 
 		for _, otherUser := range otherUsers {
-			matchingUser = append(matchingUser, NewMatchingUser(otherUser, getDistanceScore(&user, &otherUser)))
+			matchingUser = append(matchingUser, NewMatchingUser(otherUser, GetDistanceScore(&user, &otherUser)))
 		}
 
 		sort.Sort(sort.Reverse(ByScore(matchingUser)))
