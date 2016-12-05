@@ -8,15 +8,14 @@ import (
 	"math/rand"
 	"sort"
 	"time"
-	//"fmt"
 )
 
 const (
-	DB_NAME            = "go_api.db"
-	DB_TYPE            = "sqlite3"
-	DB_CONNECT_ERROR_MESSAGE   = "failed to connect database"
-	HELLO_WORLD_MESSAGE = "Hello world!"
-	SERVER_PORT_NUMBER = ":8080"
+	DB_NAME                  = "go_api.db"
+	DB_TYPE                  = "sqlite3"
+	DB_CONNECT_ERROR_MESSAGE = "failed to connect database"
+	HELLO_WORLD_MESSAGE      = "Hello world!"
+	SERVER_PORT_NUMBER       = ":8080"
 )
 
 type User struct {
@@ -182,8 +181,8 @@ func main() {
 	// userList 取得
 	router.GET("/users", func(c *gin.Context) {
 		var (
-			users []User
-			items []Item
+			users   []User
+			items   []Item
 			jsonMap map[string]interface{} = make(map[string]interface{})
 		)
 
@@ -199,11 +198,11 @@ func main() {
 
 	router.GET("/users/:id", func(c *gin.Context) {
 		var (
-			user          User
-			otherUsers    []User
+			user         User
+			otherUsers   []User
 			matchingUser []MatchingUser
-			items         []Item
-		        jsonMap map[string]interface{} = make(map[string]interface{})
+			items        []Item
+			jsonMap      map[string]interface{} = make(map[string]interface{})
 		)
 
 		db.First(&user, c.Param("id"))
