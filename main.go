@@ -8,12 +8,14 @@ import (
 	"math/rand"
 	"sort"
 	"time"
+	//"fmt"
 )
 
 const (
 	DB_NAME            = "go_api.db"
 	DB_TYPE            = "sqlite3"
-	DB_CONNECT_ERROR   = "failed to connect database"
+	DB_CONNECT_ERROR_MESSAGE   = "failed to connect database"
+	HELLO_WORLD_MESSAGE = "Hello world!"
 	SERVER_PORT_NUMBER = ":8080"
 )
 
@@ -30,7 +32,7 @@ type Item struct {
 	Score  int    `json:"score"`
 }
 
-type RecommendUser struct {
+type MatchingUser struct {
 	ID    uint    `json:"id"`
 	Name  string  `json:"name"`
 	Score float64 `json:"score"`
@@ -72,8 +74,8 @@ func createItems(s []string) []Item {
 	return items
 }
 
-func NewRecommendUser(user User, score float64) RecommendUser {
-	return RecommendUser{
+func NewMatchingUser(user User, score float64) MatchingUser {
+	return MatchingUser{
 		ID:    user.ID,
 		Name:  user.Name,
 		Score: score,
@@ -81,7 +83,7 @@ func NewRecommendUser(user User, score float64) RecommendUser {
 }
 
 // sort
-type ByScore []RecommendUser
+type ByScore []MatchingUser
 
 func (a ByScore) Len() int           { return len(a) }
 func (a ByScore) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
@@ -114,7 +116,7 @@ func getDistanceScore(user *User, otherUser *User) float64 {
 func init() {
 	db, err := gorm.Open(DB_TYPE, DB_NAME)
 	if err != nil {
-		panic(DB_CONNECT_ERROR)
+		panic(DB_CONNECT_ERROR_MESSAGE)
 	}
 	defer db.Close()
 
@@ -149,7 +151,6 @@ func init() {
 
 	count := 0
 	db.Table("users").Count(&count)
-
 	if count == 0 {
 		for _, user := range users {
 			db.Create(&user)
@@ -167,7 +168,7 @@ func setUserItem(user User, items []Item, db *gorm.DB) User {
 func main() {
 	db, err := gorm.Open(DB_TYPE, DB_NAME)
 	if err != nil {
-		panic(DB_CONNECT_ERROR)
+		panic(DB_CONNECT_ERROR_MESSAGE)
 	}
 	defer db.Close()
 
@@ -175,7 +176,7 @@ func main() {
 
 	// Hello world！
 	router.GET("/", func(c *gin.Context) {
-		c.String(200, "Hello world!")
+		c.String(200, HELLO_WORLD_MESSAGE)
 	})
 
 	// userList 取得
@@ -183,6 +184,7 @@ func main() {
 		var (
 			users []User
 			items []Item
+			jsonMap map[string]interface{} = make(map[string]interface{})
 		)
 
 		db.Find(&users)
@@ -191,15 +193,17 @@ func main() {
 			users[i] = setUserItem(user, items, db)
 		}
 
-		c.JSON(200, users)
+		jsonMap["users"] = users
+		c.JSON(200, jsonMap)
 	})
 
 	router.GET("/users/:id", func(c *gin.Context) {
 		var (
 			user          User
 			otherUsers    []User
-			recommendUser []RecommendUser
+			matchingUser []MatchingUser
 			items         []Item
+		        jsonMap map[string]interface{} = make(map[string]interface{})
 		)
 
 		db.First(&user, c.Param("id"))
@@ -211,13 +215,14 @@ func main() {
 		}
 
 		for _, otherUser := range otherUsers {
-			recommendUser = append(recommendUser, NewRecommendUser(otherUser, getDistanceScore(&user, &otherUser)))
+			matchingUser = append(matchingUser, NewMatchingUser(otherUser, getDistanceScore(&user, &otherUser)))
 		}
 
-		sort.Sort(sort.Reverse(ByScore(recommendUser)))
+		sort.Sort(sort.Reverse(ByScore(matchingUser)))
 
-		c.JSON(200, user)
-		c.JSON(200, recommendUser)
+		jsonMap["user"] = user
+		jsonMap["matching_user"] = matchingUser
+		c.JSON(200, jsonMap)
 	})
 
 	router.Run(SERVER_PORT_NUMBER)
