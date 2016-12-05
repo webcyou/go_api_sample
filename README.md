@@ -107,7 +107,7 @@ http://localhost:8080/users/:id
       ...
     ]
   },
-  "matching_user": [
+  "matching_users": [
     {
       "id": 1, 
       "name": "ユーザー1", 

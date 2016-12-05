@@ -220,7 +220,7 @@ func main() {
 		sort.Sort(sort.Reverse(ByScore(matchingUser)))
 
 		jsonMap["user"] = user
-		jsonMap["matching_user"] = matchingUser
+		jsonMap["matching_users"] = matchingUser
 		c.JSON(200, jsonMap)
 	})
 
