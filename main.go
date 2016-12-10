@@ -59,7 +59,7 @@ func NewItem(name string) Item {
 
 	return Item{
 		Name:  name,
-		Score: rand.Intn(10),
+		Score: rand.Intn(10) + 1,
 	}
 }
 
