@@ -34,14 +34,14 @@ func TestNewGetDistanceScore(t *testing.T) {
 	var matchingUser []MatchingUser
 
 	itemNames := []string{
-		"マリオブラザース",
-		"スーパーマリオブラザース",
-		"ゼルダの伝説",
-		"アイスクライマー",
-		"エキサイトバイク",
-		"パックマン",
-		"魔界村",
-		"ドクターマリオ",
+		"ゲーム1",
+		"ゲーム2",
+		"ゲーム3",
+		"ゲーム4",
+		"ゲーム5",
+		"ゲーム6",
+		"ゲーム7",
+		"ゲーム8",
 	}
 
 	userNames := []string{
@@ -79,14 +79,14 @@ func BenchmarkGetDistanceScore(b *testing.B) {
 	var matchingUser []MatchingUser
 
 	itemNames := []string{
-		"マリオブラザース",
-		"スーパーマリオブラザース",
-		"ゼルダの伝説",
-		"アイスクライマー",
-		"エキサイトバイク",
-		"パックマン",
-		"魔界村",
-		"ドクターマリオ",
+		"ゲーム1",
+		"ゲーム2",
+		"ゲーム3",
+		"ゲーム4",
+		"ゲーム5",
+		"ゲーム6",
+		"ゲーム7",
+		"ゲーム8",
 	}
 
 	userNames := []string{

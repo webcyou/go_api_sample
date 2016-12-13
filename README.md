@@ -41,13 +41,13 @@ http://localhost:8080/users/
       "items": [
       {
         "id": 1, 
-        "name": "マリオブラザース", 
+        "name": "ゲーム1", 
         "score": 5, 
         "user_id": 1
       }, 
       {
         "id": 2,
-        "name": "スーパーマリオブラザース", 
+        "name": "ゲーム2", 
         "score": 0, 
         "user_id": 1
       }, 
@@ -60,7 +60,7 @@ http://localhost:8080/users/
       "items": [
       {
         "id": 9, 
-        "name": "マリオブラザース", 
+        "name": "ゲーム3", 
         "score": 1, 
         "user_id": 2
       }, 
@@ -88,19 +88,19 @@ http://localhost:8080/users/:id
     "items": [
       {
         "id": 9, 
-        "name": "マリオブラザース", 
+        "name": "ゲーム1", 
         "score": 1, 
         "user_id": 2
       }, 
       {
         "id": 10, 
-        "name": "スーパーマリオブラザース", 
+        "name": "ゲーム2", 
         "score": 1, 
         "user_id": 2
       }, 
       {
         "id": 11, 
-        "name": "ゼルダの伝説", 
+        "name": "ゲーム3", 
         "score": 3, 
         "user_id": 2
       },
